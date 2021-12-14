@@ -18,17 +18,17 @@ public class ItemDurabilityLowListener implements Listener {
     ItemMeta meta = item.getItemMeta();
     if (meta instanceof Damageable) {
       Damageable tool = (Damageable) meta;
-      float maxDurability = item.getType().getMaxDurability();
-      float previousDurability =
+      short maxDurability = item.getType().getMaxDurability();
+      int previousDurability =
           maxDurability - tool.getDamage(); // Durability before the item is degraded
-      float unitOfDamage = e.getDamage();
-      float currentDurability =
+      int unitOfDamage = e.getDamage();
+      int currentDurability =
           previousDurability - unitOfDamage; // Durability after the item is degraded
       if (currentDurability
           <= 0) { // Do not tell user that item is going to be broken when the item is just broken
         return;
       }
-      float durabilityPercent = currentDurability / maxDurability * 100;
+      float durabilityPercent = (float) currentDurability / (float) maxDurability * 100;
       float minPercentageToWarn;
       if (item.getType().toString().startsWith("DIAMOND_")) {
         minPercentageToWarn = (float) 12.5;
