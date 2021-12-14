@@ -3,4 +3,4 @@ version: '${project.version}'
 main: com.tropicbliss.toolbreakagewarning.ToolBreakageWarning
 api-version: 1.18
 authors: [ tropicbliss ]
-description: Notifies the user when the tool is about to break
+description: Notifies the user when a tool is about to break
