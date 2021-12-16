@@ -1,5 +1,6 @@
 package com.tropicbliss.toolbreakagewarning.listeners;
 
+import com.tropicbliss.toolbreakagewarning.ToolBreakageWarning;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -28,12 +29,14 @@ public class ItemDurabilityLowListener implements Listener {
           <= 0) { // Do not tell user that item is going to be broken when the item is just broken
         return;
       }
-      float durabilityPercent = (float) currentDurability / (float) maxDurability * 100;
-      float minPercentageToWarn;
+      double durabilityPercent = (double) currentDurability / (double) maxDurability * 100;
+      double minPercentageToWarn;
       if (item.getType().toString().startsWith("DIAMOND_")) {
-        minPercentageToWarn = (float) 12.5;
+        minPercentageToWarn = ToolBreakageWarning.getPlugin().getConfig()
+            .getDouble("diamondToolWarnPercent");
       } else {
-        minPercentageToWarn = (float) 25;
+        minPercentageToWarn = ToolBreakageWarning.getPlugin().getConfig()
+            .getDouble("nonDiamondToolWarnPercent");
       }
       if (durabilityPercent <= minPercentageToWarn) {
         player.sendMessage(ChatColor.RED + "The item you're holding is about to break");
