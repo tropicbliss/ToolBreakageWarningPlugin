@@ -31,7 +31,8 @@ public class ItemDurabilityLowListener implements Listener {
       }
       double durabilityPercent = (double) currentDurability / (double) maxDurability * 100;
       double minPercentageToWarn;
-      if (item.getType().toString().startsWith("DIAMOND_")) {
+      String itemName = item.getType().toString();
+      if (itemName.startsWith("DIAMOND_")) {
         minPercentageToWarn = ToolBreakageWarning.getPlugin().getConfig()
             .getDouble("diamondToolWarnPercent");
       } else {
@@ -39,7 +40,14 @@ public class ItemDurabilityLowListener implements Listener {
             .getDouble("nonDiamondToolWarnPercent");
       }
       if (durabilityPercent <= minPercentageToWarn) {
-        player.sendMessage(ChatColor.RED + "The item you're holding is about to break");
+        String message;
+        if (itemName.endsWith("HELMET") || itemName.endsWith("CHESTPLATE") || itemName.endsWith(
+            "LEGGINGS") || itemName.endsWith("BOOTS")) {
+          message = "An armor you're wearing is about to break";
+        } else {
+          message = "The item you're holding is about to break";
+        }
+        player.sendMessage(ChatColor.RED + message);
       }
     }
   }
