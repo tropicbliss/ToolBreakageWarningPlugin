@@ -1,3 +1,3 @@
 # ToolBreakageWarning
 
-A Spigot plugin that informs the user when a tool is about to break.
+A Spigot plugin that informs the user when an item is about to break.
