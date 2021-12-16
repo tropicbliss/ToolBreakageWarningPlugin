@@ -42,8 +42,10 @@ public class ItemDurabilityLowListener implements Listener {
       if (durabilityPercent <= minPercentageToWarn) {
         String message;
         if (itemName.endsWith("HELMET") || itemName.endsWith("CHESTPLATE") || itemName.endsWith(
-            "LEGGINGS") || itemName.endsWith("BOOTS")) {
+            "LEGGINGS") || itemName.endsWith("BOOTS") || itemName.endsWith("ELYTRA")) {
           message = "An armor you're wearing is about to break";
+        } else if (itemName.endsWith("SHIELD")) {
+          message = "Your shield is about to break";
         } else {
           message = "The item you're holding is about to break";
         }
