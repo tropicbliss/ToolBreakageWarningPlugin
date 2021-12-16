@@ -32,7 +32,7 @@ public class ItemDurabilityLowListener implements Listener {
       double durabilityPercent = (double) currentDurability / (double) maxDurability * 100;
       double minPercentageToWarn;
       String itemName = item.getType().toString();
-      if (itemName.contains("DIAMOND_")) {
+      if (itemName.startsWith("DIAMOND_")) {
         minPercentageToWarn = ToolBreakageWarning.getPlugin().getConfig()
             .getDouble("diamondToolWarnPercent");
       } else {
@@ -44,7 +44,7 @@ public class ItemDurabilityLowListener implements Listener {
         if (itemName.endsWith("_HELMET") || itemName.endsWith("_CHESTPLATE") || itemName.endsWith(
             "_LEGGINGS") || itemName.endsWith("_BOOTS") || itemName.endsWith("ELYTRA")) {
           message = "An armor you're wearing is about to break";
-        } else if (itemName.endsWith("SHIELD")) {
+        } else if (itemName.equals("SHIELD")) {
           message = "Your shield is about to break";
         } else {
           message = "The item you're holding is about to break";
